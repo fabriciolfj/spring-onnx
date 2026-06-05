@@ -1,0 +1,23 @@
+{
+  "amount": 200.00,
+  "transactionType": "PIX",
+  "merchantCategory": "ALIMENTACAO",
+  "country": "BR",
+  "hour": 14,
+  "dayOfWeek": 2,
+  "isWeekend": false,
+  "accountTier": "PADRAO",
+  "accountAgeDays": 3,
+  "balance": 300.00,
+  "dailyLimit": 50.00,
+  "monthlyLimit": 50000.00,
+  "creditScore": 650,
+  "txLast24h": 0,
+  "txLast7d": 10,
+  "avgTxAmount30d": 200.00,
+  "secondsSinceLastTx": 600,
+  "isNewDevice": false,
+  "isNewBeneficiary": false,
+  "failedAttempts24h": 0,
+  "deviceTrustScore": 0.99
+}

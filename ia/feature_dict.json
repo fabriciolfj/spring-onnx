@@ -1,0 +1,208 @@
+{
+  "version": "1.0.0",
+  "model_file": "financial_approval.onnx",
+  "threshold": 0.5,
+  "input_name": "features",
+  "output_name": "approval_probability",
+  "feature_order": [
+    "amount",
+    "hour",
+    "day_of_week",
+    "is_weekend",
+    "account_age_days",
+    "balance",
+    "daily_limit",
+    "monthly_limit",
+    "credit_score",
+    "tx_last_24h",
+    "tx_last_7d",
+    "avg_tx_amount_30d",
+    "seconds_since_last_tx",
+    "is_new_device",
+    "is_new_beneficiary",
+    "failed_attempts_24h",
+    "device_trust_score",
+    "transaction_type_enc",
+    "merchant_category_enc",
+    "country_enc",
+    "account_tier_enc"
+  ],
+  "numeric_features": [
+    "amount",
+    "hour",
+    "day_of_week",
+    "is_weekend",
+    "account_age_days",
+    "balance",
+    "daily_limit",
+    "monthly_limit",
+    "credit_score",
+    "tx_last_24h",
+    "tx_last_7d",
+    "avg_tx_amount_30d",
+    "seconds_since_last_tx",
+    "is_new_device",
+    "is_new_beneficiary",
+    "failed_attempts_24h",
+    "device_trust_score"
+  ],
+  "categorical_features": [
+    "transaction_type",
+    "merchant_category",
+    "country",
+    "account_tier"
+  ],
+  "scaler": {
+    "mean": [
+      12753.729782446155,
+      11.4433,
+      2.999,
+      0.2901,
+      2515.622,
+      46898.05975987929,
+      31350.5679711792,
+      314032.0,
+      649.2463,
+      14.9448,
+      49.4436,
+      7878.2189576442715,
+      43648.9471,
+      0.118,
+      0.2546,
+      2.5142,
+      0.4958263599027167
+    ],
+    "scale": [
+      26214.983118658023,
+      6.976588357499674,
+      2.0099251229834407,
+      0.45380831856633036,
+      1437.7728476070204,
+      74572.89404916181,
+      40196.78749901495,
+      401774.4553552403,
+      119.97695877254932,
+      8.947902154136466,
+      29.191091432832724,
+      12520.689933231024,
+      25101.92557124456,
+      0.32260812141048156,
+      0.4356361325693726,
+      1.715400349772612,
+      0.28856667106002676
+    ],
+    "n_numeric_features": 17
+  },
+  "label_encoders": {
+    "transaction_type": {
+      "classes": [
+        "BOLETO",
+        "CARTAO_CREDITO",
+        "CARTAO_DEBITO",
+        "PIX",
+        "TED"
+      ],
+      "mapping": {
+        "BOLETO": 0,
+        "CARTAO_CREDITO": 1,
+        "CARTAO_DEBITO": 2,
+        "PIX": 3,
+        "TED": 4
+      }
+    },
+    "merchant_category": {
+      "classes": [
+        "ALIMENTACAO",
+        "COMBUSTIVEL",
+        "EDUCACAO",
+        "ELETRONICOS",
+        "SAUDE",
+        "SERVICOS",
+        "VAREJO",
+        "VIAGEM"
+      ],
+      "mapping": {
+        "ALIMENTACAO": 0,
+        "COMBUSTIVEL": 1,
+        "EDUCACAO": 2,
+        "ELETRONICOS": 3,
+        "SAUDE": 4,
+        "SERVICOS": 5,
+        "VAREJO": 6,
+        "VIAGEM": 7
+      }
+    },
+    "country": {
+      "classes": [
+        "AR",
+        "BR",
+        "CL",
+        "CN",
+        "GB",
+        "MX",
+        "PT",
+        "US"
+      ],
+      "mapping": {
+        "AR": 0,
+        "BR": 1,
+        "CL": 2,
+        "CN": 3,
+        "GB": 4,
+        "MX": 5,
+        "PT": 6,
+        "US": 7
+      }
+    },
+    "account_tier": {
+      "classes": [
+        "BASICO",
+        "PADRAO",
+        "PREMIUM",
+        "PRIME"
+      ],
+      "mapping": {
+        "BASICO": 0,
+        "PADRAO": 1,
+        "PREMIUM": 2,
+        "PRIME": 3
+      }
+    }
+  },
+  "labels": {
+    "0": {
+      "status": "NEGADO",
+      "color": "red"
+    },
+    "1": {
+      "status": "APROVADO",
+      "color": "green"
+    }
+  },
+  "suggestion_rules": [
+    {
+      "condition": "amount > daily_limit",
+      "suggestion": "Valor excede o limite diário da conta"
+    },
+    {
+      "condition": "amount > balance",
+      "suggestion": "Saldo insuficiente para realizar a transação"
+    },
+    {
+      "condition": "probability < 0.30",
+      "suggestion": "Perfil de risco elevado detectado"
+    },
+    {
+      "condition": "is_new_device == 1",
+      "suggestion": "Transação de dispositivo não reconhecido — confirme sua identidade"
+    },
+    {
+      "condition": "failed_attempts_24h >= 3",
+      "suggestion": "Múltiplas tentativas falhas detectadas — conta em observação"
+    },
+    {
+      "condition": "country not in BR",
+      "suggestion": "Transação internacional — verifique se você iniciou esta operação"
+    }
+  ]
+}
