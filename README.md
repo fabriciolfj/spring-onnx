@@ -1,6 +1,6 @@
 # spring-onnx — Aprovação de Transações Financeiras com IA
 
-Aplicação **Spring Boot** que realiza aprovação de transações financeiras em tempo real utilizando um modelo de Machine Learning exportado no formato **ONNX**. O modelo é carregado e executado diretamente na JVM via **Deep Java Library (DJL)**, sem dependência de serviços externos de inferência.
+Aplicação **Spring Boot** que realiza aprovação de transações financeiras em tempo real utilizando um modelo de **Inteligência Artificial** exportado no formato **ONNX**. O modelo é carregado e executado diretamente na JVM via **Deep Java Library (DJL)**, sem dependência de serviços externos de inferência.
 
 ---
 
@@ -40,11 +40,11 @@ O fluxo completo envolve duas etapas distintas:
 |---|---|
 | Linguagem (app) | Java 25 |
 | Framework | Spring Boot 4.0.6 (Web MVC) |
-| Inferência ML | Deep Java Library (DJL) 0.36.0 + ONNX Runtime Engine |
+| Inferência IA | Deep Java Library (DJL) 0.36.0 + ONNX Runtime Engine |
 | Documentação API | SpringDoc OpenAPI 3.0.2 (Swagger UI) |
 | Boilerplate | Lombok |
 | Linguagem (treino) | Python 3.x |
-| Framework ML | PyTorch + scikit-learn |
+| Framework IA | PyTorch + scikit-learn |
 | Formato do modelo | ONNX opset 14 |
 | Build | Gradle 8+ |
 
@@ -85,7 +85,7 @@ spring-onnx/
 
 ---
 
-## O Modelo de ML
+## O Modelo de IA
 
 ### Arquitetura da Rede Neural
 
